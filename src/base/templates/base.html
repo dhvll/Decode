@@ -1,25 +1,23 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" type="text/css" />
     <title>Decode</title>
-</head>
-<body>
-    {% include "navbar.html" %}
-
-    {% if messages %}
+  </head>
+  <body>
+    {% include "navbar.html" %} {% if messages %}
     <ul class="messages">
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
+      {% for message in messages %}
+      <li>{{ message }}</li>
+      {% endfor %}
     </ul>
     {% endif %}
-
-    {% block content %}
-
-    {% endblock content %}
-    
-</body>
+    <img src="{% static 'images/lofi.png' %}" />
+    {% block content %} {% endblock content %}
+  </body>
 </html>
