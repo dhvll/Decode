@@ -2,7 +2,7 @@
   {% for room in rooms %}
   <div>
     {% if request.user == room.host %}
-    <a href="{% url 'update-room' room.id %}">Edit Room</a>
+    <a href="{% url 'update-room' room.id %}">Edit</a>
     <a href="{% url 'delete-room' room.id %}">Delete</a>
     {% endif %}
 

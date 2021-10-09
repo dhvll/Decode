@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
 from .models import Room, Topic, Message
-from .forms import RoomForm, MessageForm
+from .forms import RoomForm
 
 
 def loginUser(request):
@@ -112,7 +112,9 @@ def createRoom(request):
     if request.method == 'POST':
         form = RoomForm(request.POST)
         if form.is_valid():
-            form.save()
+            room = form.save(commit=False)
+            room.host = request.user
+            room.save()
             return redirect('home')
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
@@ -148,21 +150,21 @@ def deleteRoom(request, pk):
     return render(request, 'base/delete.html', {'obj': room})
 
 
-@login_required(login_url='login')
-def updateMessage(request, pk):
-    message = Message.objects.get(id=pk)
-    form = MessageForm(instance=message)
+# @login_required(login_url='login')
+# def updateMessage(request, pk):
+#     message = Message.objects.get(id=pk)
+#     form = MessageForm(instance=message)
 
-    if request.user != message.user:
-        return HttpResponse('You are not allowed here!!')
+#     if request.user != message.user:
+#         return HttpResponse('You are not allowed here!!')
 
-    if request.method == 'POST':
-        form = MessageForm(request.POST, instance=message)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    context = {'form': form}
-    return render(request, 'base/room_form.html', context)
+#     if request.method == 'POST':
+#         form = MessageForm(request.POST, instance=message)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('home')
+#     context = {'form': form}
+#     return render(request, 'base/room_form.html', context)
 
 
 @login_required(login_url='login')
