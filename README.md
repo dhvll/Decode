@@ -52,6 +52,17 @@ To get a local copy up and running follow these simple steps:
    $ python manage.py runserver
    ```
 
+   ## Usage
+
+- Create Profile
+  ![Create Profile](images/profile.png)
+
+- Create Group
+  ![Select Choice](images/groups.png)
+
+- Discussion
+  ![Results](images/discussion.png)
+
 ## Authors
 
 - Dhaval Chaudhari - [dhavall13](https://github.com/dhavall13/)
